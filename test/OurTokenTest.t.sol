@@ -52,10 +52,8 @@ contract OurTokenTest is Test {
 
     function testTotalSupply() public {
         uint256 totalSupply = ourToken.totalSupply();
-        uint256 sumBalances = ourToken.balanceOf(address(this)) +
-            ourToken.balanceOf(msg.sender) +
-            ourToken.balanceOf(bob) +
-            ourToken.balanceOf(alice);
+        uint256 sumBalances = ourToken.balanceOf(address(this)) + ourToken.balanceOf(msg.sender)
+            + ourToken.balanceOf(bob) + ourToken.balanceOf(alice);
         assertEq(totalSupply, sumBalances);
     }
 
@@ -105,10 +103,7 @@ contract OurTokenTest is Test {
         uint256 transferAmount = 200;
         vm.prank(alice);
         ourToken.transferFrom(bob, alice, transferAmount);
-        assertEq(
-            ourToken.allowance(bob, alice),
-            allowanceAmount - transferAmount
-        );
+        assertEq(ourToken.allowance(bob, alice), allowanceAmount - transferAmount);
     }
 
     function testTransferToZeroAddress() public {
